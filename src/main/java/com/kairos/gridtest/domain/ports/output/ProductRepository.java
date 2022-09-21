@@ -1,4 +1,4 @@
-package com.kairos.gridtest.domain.repository;
+package com.kairos.gridtest.domain.ports.output;
 
 import com.kairos.gridtest.domain.model.Product;
 

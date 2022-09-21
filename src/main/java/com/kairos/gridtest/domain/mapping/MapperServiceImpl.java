@@ -1,14 +1,10 @@
 package com.kairos.gridtest.domain.mapping;
 
-import com.github.dozermapper.core.DozerBeanMapper;
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
 import com.github.dozermapper.core.loader.api.BeanMappingBuilder;
 import com.kairos.gridtest.domain.model.Price;
-import com.kairos.gridtest.domain.model.Product;
-import com.kairos.gridtest.domain.model.dto.ProductPrice;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
 
 import javax.annotation.PostConstruct;
 

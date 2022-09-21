@@ -1,6 +1,7 @@
 package com.kairos.gridtest.application;
 
-import com.kairos.gridtest.domain.model.dto.ProductPrice;
+import com.kairos.gridtest.domain.ports.input.GetProductPriceUseCase;
+import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
 import com.kairos.gridtest.domain.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,12 +16,12 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/prices")
-public class ProductsController {
+public class PricesController {
 
-    private final ProductService productService;
+    private final GetProductPriceUseCase productService;
 
     @Autowired
-    public ProductsController(ProductService productService) {
+    public PricesController(GetProductPriceUseCase productService) {
         this.productService = productService;
     }
 

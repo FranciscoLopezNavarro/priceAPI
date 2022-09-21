@@ -1,4 +1,4 @@
-package com.kairos.gridtest.domain.model.dto;
+package com.kairos.gridtest.domain.ports.input.dto;
 
 import com.kairos.gridtest.domain.model.Amount;
 
