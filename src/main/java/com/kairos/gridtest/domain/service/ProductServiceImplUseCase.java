@@ -2,9 +2,8 @@ package com.kairos.gridtest.domain.service;
 
 import com.kairos.gridtest.domain.mapping.MapperService;
 import com.kairos.gridtest.domain.model.Product;
-import com.kairos.gridtest.domain.ports.input.GetProductPriceUseCase;
 import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
-import com.kairos.gridtest.domain.ports.output.ProductRepository;
+import com.kairos.gridtest.domain.ports.output.ProductDAOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +12,12 @@ import java.time.LocalDateTime;
 @Service
 public class ProductServiceImplUseCase implements ProductService {
 
-    private final ProductRepository productRepository;
+    private final ProductDAOService productRepository;
 
     private final MapperService mapper;
 
     @Autowired
-    public ProductServiceImplUseCase(ProductRepository productRepository, MapperService mapper) {
+    public ProductServiceImplUseCase(ProductDAOService productRepository, MapperService mapper) {
         this.productRepository = productRepository;
         this.mapper = mapper;
     }

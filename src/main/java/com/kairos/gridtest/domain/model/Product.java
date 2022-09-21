@@ -16,12 +16,18 @@ public class Product {
         this.prices = new ArrayList<>(List.of(price));
     }
 
+    public Product(long brandId, long productId) {
+        this.brandId = brandId;
+        this.productId = productId;
+        prices = new ArrayList<>();
+    }
+
     public Price getPrice() {
         return prices.stream().max(Comparator.comparing(Price::getPriority)).orElse(null);
     }
 
-    public void addProductPrice(int priority, Amount price, LocalDateTime startDate, LocalDateTime endDate) {
-        prices.add(new Price(brandId, this.productId, prices.size() + 1, priority, price, startDate, endDate));
+    public void addProductPrice(int priceId, int priority, Amount price, LocalDateTime startDate, LocalDateTime endDate) {
+        prices.add(new Price(brandId, this.productId, priceId, priority, price, startDate, endDate));
     }
 
     public long getBrandId() {
