@@ -1,4 +1,4 @@
-package com.kairos.gridtest.infrastructure.persistence.repository;
+package com.kairos.gridtest.infrastructure.adapter.db.persistence.repository;
 
 import com.kairos.gridtest.domain.model.Amount;
 import com.kairos.gridtest.domain.model.Product;
@@ -11,12 +11,12 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
-public class H2ProductDAOImplService implements ProductDAOService {
+public class H2ProductDAOServiceImpl implements ProductDAOService {
 
     private final PriceRepository priceRepository;
 
     @Autowired
-    public H2ProductDAOImplService(PriceRepository priceRepository) {
+    public H2ProductDAOServiceImpl(PriceRepository priceRepository) {
         this.priceRepository = priceRepository;
     }
 
