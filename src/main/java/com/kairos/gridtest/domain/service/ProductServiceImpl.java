@@ -1,30 +1,52 @@
 package com.kairos.gridtest.domain.service;
 
-import com.kairos.gridtest.domain.model.dto.GetProductPriceResponse;
+import com.kairos.gridtest.domain.mapping.MapperService;
+import com.kairos.gridtest.domain.model.Product;
+import com.kairos.gridtest.domain.model.dto.ProductPrice;
 import com.kairos.gridtest.domain.repository.ProductRepository;
-import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
-
+@Service
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
-    private final ModelMapper mapper;
+    private final MapperService mapper;
 
-    public ProductServiceImpl(ProductRepository productRepository) {
+    @Autowired
+    public ProductServiceImpl(ProductRepository productRepository, MapperService mapper) {
         this.productRepository = productRepository;
-        this.mapper = new ModelMapper();
+        this.mapper = mapper;
     }
 
+    /**
+     * Get the price of a product according to a given date.
+     *
+     * @param brandId   The brand to which the product belong
+     * @param productId The product identifier.
+     * @param date      The date in which the price wants to be obtained.
+     * @return The price of the product and its details.
+     */
     @Override
-    public GetProductPriceResponse getProductPrice(long brandId, long productId, LocalDateTime date) {
+    public ProductPrice getProductPrice(long brandId, long productId, LocalDateTime date) {
         var product = productRepository.findProductByBrandAndProductIdAndDate(brandId, productId, date);
 
         if (product.isEmpty())
-            throw new RuntimeException("Product not found for this data");
+            return null;
 
-        return mapper.map(product.get(), GetProductPriceResponse.class);
+        return buildProductPriceResponseFromProduct(product.get());
+    }
+
+    /**
+     * Builds the response object from the product obtained from the repository
+     *
+     * @param product The product obtained from the repository
+     * @return The price of the product and its details.
+     */
+    private ProductPrice buildProductPriceResponseFromProduct(Product product) {
+        return mapper.getMapper().map(product.getPrice(), ProductPrice.class);
     }
 }

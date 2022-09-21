@@ -4,7 +4,7 @@ import com.kairos.gridtest.domain.model.Amount;
 
 import java.time.LocalDateTime;
 
-public class GetProductPriceResponse {
+public class ProductPrice {
     private long brandId;
     private long productId;
     private int priceList;

@@ -2,23 +2,33 @@ package com.kairos.gridtest.domain.model;
 
 import java.time.LocalDateTime;
 
-public class ProductPrice {
+public class Price {
 
+    private final long brandId;
     private final long productId;
     private final int priceId;
     private final int priority;
-    private final Amount price;
+    private final Amount amount;
 
     private final LocalDateTime startDate;
     private final LocalDateTime endDate;
 
-    public ProductPrice(long productId, int priceId, int priority, Amount price, LocalDateTime startDate, LocalDateTime endDate) {
+    public Price(long brandId, long productId, int priceId, int priority, Amount amount, LocalDateTime startDate, LocalDateTime endDate) {
+        this.brandId = brandId;
         this.productId = productId;
         this.priceId = priceId;
         this.priority = priority;
-        this.price = price;
+        this.amount = amount;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public long getBrandId() {
+        return brandId;
+    }
+
+    public long getProductId() {
+        return productId;
     }
 
     public int getPriceId() {
@@ -29,8 +39,8 @@ public class ProductPrice {
         return priority;
     }
 
-    public Amount getPrice() {
-        return price;
+    public Amount getAmount() {
+        return amount;
     }
 
     public LocalDateTime getStartDate() {

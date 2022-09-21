@@ -2,7 +2,7 @@ package com.kairos.gridtest.domain;
 
 import com.kairos.gridtest.domain.model.Amount;
 import com.kairos.gridtest.domain.model.Product;
-import com.kairos.gridtest.domain.model.ProductPrice;
+import com.kairos.gridtest.domain.model.Price;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,9 +24,9 @@ public class ProductTest {
 
         Product product = new Product(brandId,
                 productId,
-                new ProductPrice(productId, 0, 0, new Amount(BigDecimal.TEN, "EUR"), startDate, endDate));
+                new Price(brandId, productId, 0, 0, new Amount(BigDecimal.TEN, "EUR"), startDate, endDate));
 
-        assertThat(product.getPriorityPrice().getPrice().getValue(), is(BigDecimal.TEN));
+        assertThat(product.getPrice().getAmount().getValue(), is(BigDecimal.TEN));
     }
 
 
@@ -41,12 +41,12 @@ public class ProductTest {
 
         Product product = new Product(brandId,
                 productId,
-                new ProductPrice(productId, 0, 0, new Amount(BigDecimal.TEN, "EUR"), startDate, endDate));
+                new Price(brandId, productId, 0, 0, new Amount(BigDecimal.TEN, "EUR"), startDate, endDate));
 
         product.addProductPrice(1, new Amount(BigDecimal.ONE, "EUR"), startDate, endDate);
 
         assertThat(product.getPrices().size(), is(2));
-        assertThat(product.getPriorityPrice().getPrice().getValue(), is(BigDecimal.ONE));
+        assertThat(product.getPrice().getAmount().getValue(), is(BigDecimal.ONE));
     }
 
 }
