@@ -43,7 +43,7 @@ public class ProductTest {
                 productId,
                 new Price(brandId, productId, 0, 0, new Amount(BigDecimal.TEN, "EUR"), startDate, endDate));
 
-        product.addProductPrice(1, new Amount(BigDecimal.ONE, "EUR"), startDate, endDate);
+        product.addProductPrice(1, 1,new Amount(BigDecimal.ONE, "EUR"), startDate, endDate);
 
         assertThat(product.getPrices().size(), is(2));
         assertThat(product.getPrice().getAmount().getValue(), is(BigDecimal.ONE));
