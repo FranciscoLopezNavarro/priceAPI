@@ -1,14 +1,17 @@
 package com.kairos.gridtest.domain.model;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+@Getter
 public class Product {
-    private long brandId;
-    private long productId;
-    private List<Price> prices;
+    private final long brandId;
+    private final long productId;
+    private final List<Price> prices;
 
     public Product(long brandId, long productId, Price price) {
         this.brandId = brandId;
@@ -26,19 +29,8 @@ public class Product {
         return prices.stream().max(Comparator.comparing(Price::getPriority)).orElse(null);
     }
 
-    public void addProductPrice(int priceId, int priority, Amount price, LocalDateTime startDate, LocalDateTime endDate) {
-        prices.add(new Price(brandId, this.productId, priceId, priority, price, startDate, endDate));
+    public void addProductPrice(Price price) {
+        prices.add(price);
     }
 
-    public long getBrandId() {
-        return brandId;
-    }
-
-    public long getProductId() {
-        return productId;
-    }
-
-    public List<Price> getPrices() {
-        return prices;
-    }
 }

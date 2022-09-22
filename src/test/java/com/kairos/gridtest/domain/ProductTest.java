@@ -72,15 +72,18 @@ public class ProductTest {
                 );
 
         product.addProductPrice(
-                1,
-                1,
-                Amount.builder()
-                        .value(BigDecimal.ONE)
-                        .currency("EUR")
-                        .build(),
-                startDate,
-                endDate
-        );
+                Price.builder()
+                        .brandId(brandId)
+                        .productId(productId)
+                        .priceId(0)
+                        .priority(0)
+                        .amount(Amount.builder()
+                                .value(BigDecimal.TEN)
+                                .currency("EUR")
+                                .build())
+                        .startDate(startDate)
+                        .endDate(endDate)
+                        .build());
 
         assertThat(product.getPrices().size(), is(2));
         assertThat(product.getPrice().getAmount().getValue(), is(BigDecimal.ONE));
