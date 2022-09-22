@@ -1,4 +1,4 @@
-package com.kairos.gridtest.application;
+package com.kairos.gridtest.infrastructure.adapter.controller;
 
 import com.kairos.gridtest.domain.ports.input.GetProductPriceUseCase;
 import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;

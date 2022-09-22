@@ -1,4 +1,4 @@
-package com.kairos.gridtest.infrastructure.adapter.db.persistence.entity;
+package com.kairos.gridtest.infrastructure.adapter.db.entity;
 
 import org.hibernate.annotations.UpdateTimestamp;
 

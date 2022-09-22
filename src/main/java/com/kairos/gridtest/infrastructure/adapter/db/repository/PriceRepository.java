@@ -1,6 +1,6 @@
-package com.kairos.gridtest.infrastructure.adapter.db.persistence.repository;
+package com.kairos.gridtest.infrastructure.adapter.db.repository;
 
-import com.kairos.gridtest.infrastructure.adapter.db.persistence.entity.PriceEntity;
+import com.kairos.gridtest.infrastructure.adapter.db.entity.PriceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
