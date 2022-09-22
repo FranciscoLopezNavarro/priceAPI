@@ -1,7 +1,7 @@
 package com.kairos.gridtest.infrastructure.adapter.controller;
 
-import com.kairos.gridtest.domain.ports.input.GetProductPriceUseCase;
-import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
+import com.kairos.gridtest.application.GetProductPriceUseCase;
+import com.kairos.gridtest.application.dto.ProductPrice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +30,7 @@ public class PricesController {
                                                  @PathVariable
                                                  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) {
         return Optional
-                .ofNullable(getProductPriceUseCase.getProductPrice(brandId, productId, date))
+                .ofNullable(getProductPriceUseCase.execute(brandId, productId, date))
                 .map(productPrice -> ResponseEntity.ok().body(productPrice))
                 .orElseGet(() -> ResponseEntity.notFound().build());
 

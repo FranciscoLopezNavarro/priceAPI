@@ -1,13 +1,13 @@
 package com.kairos.gridtest.domain.model;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Builder
-@Getter
+@Data
 public class Amount {
-    private BigDecimal value;
-    private String currency;
+    private final BigDecimal value;
+    private final String currency;
 }

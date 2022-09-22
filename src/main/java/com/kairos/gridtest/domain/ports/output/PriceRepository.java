@@ -4,6 +4,6 @@ import com.kairos.gridtest.domain.model.Price;
 
 import java.util.List;
 
-public interface PriceDAO {
+public interface PriceRepository {
     List<Price> findPriceByBrandAndProduct(long brandId, long productId);
 }

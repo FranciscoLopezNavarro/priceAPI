@@ -1,9 +1,9 @@
 package com.kairos.gridtest.domain.service;
 
+import com.kairos.gridtest.application.dto.ProductPrice;
 import com.kairos.gridtest.domain.model.Price;
 import com.kairos.gridtest.domain.model.Product;
-import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
-import com.kairos.gridtest.domain.ports.output.PriceDAO;
+import com.kairos.gridtest.domain.ports.output.PriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ProductDomainService implements ProductService {
+public class ProductDomainService  {
 
-    private final PriceDAO priceDAO;
+    private final PriceRepository priceRepository;
 
     @Autowired
-    public ProductDomainService(PriceDAO priceDAO) {
-        this.priceDAO = priceDAO;
+    public ProductDomainService(PriceRepository priceRepository) {
+        this.priceRepository = priceRepository;
     }
 
     /**
@@ -29,9 +29,9 @@ public class ProductDomainService implements ProductService {
      * @param date      The date in which the price wants to be obtained.
      * @return The price of the product and its details.
      */
-    @Override
+
     public ProductPrice getProductPrice(long brandId, long productId, LocalDateTime date) {
-        var priceList = priceDAO.findPriceByBrandAndProduct(brandId, productId);
+        var priceList = priceRepository.findPriceByBrandAndProduct(brandId, productId);
 
         var filteredPriceList = filterPriceList(priceList, date);
         if (filteredPriceList.isEmpty())

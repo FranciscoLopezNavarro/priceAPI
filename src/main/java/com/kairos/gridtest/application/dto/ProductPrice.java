@@ -1,8 +1,7 @@
-package com.kairos.gridtest.domain.ports.input.dto;
+package com.kairos.gridtest.application.dto;
 
 import com.kairos.gridtest.domain.model.Amount;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.Value;
 
 import java.time.LocalDateTime;

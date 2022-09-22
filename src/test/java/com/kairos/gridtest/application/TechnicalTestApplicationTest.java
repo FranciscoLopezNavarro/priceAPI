@@ -1,8 +1,8 @@
 package com.kairos.gridtest.application;
 
 
-import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
-import com.kairos.gridtest.domain.ports.output.PriceDAO;
+import com.kairos.gridtest.application.dto.ProductPrice;
+import com.kairos.gridtest.domain.ports.output.PriceRepository;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import io.restassured.module.mockmvc.specification.MockMvcRequestSpecification;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +31,7 @@ class TechnicalTestApplicationTest {
     private WebApplicationContext context;
 
     @Autowired
-    private PriceDAO productRepository;
+    private PriceRepository productRepository;
 
     @BeforeEach
     public void setupUp() {

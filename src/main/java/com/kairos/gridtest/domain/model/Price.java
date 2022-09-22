@@ -1,18 +1,18 @@
 package com.kairos.gridtest.domain.model;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Builder
-@Getter
+@Data
 public class Price {
-    private long brandId;
-    private long productId;
-    private int priceId;
-    private int priority;
-    private Amount amount;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private final long brandId;
+    private final long productId;
+    private final int priceId;
+    private final int priority;
+    private final Amount amount;
+    private final LocalDateTime startDate;
+    private final LocalDateTime endDate;
 }
