@@ -1,6 +1,7 @@
 package com.kairos.gridtest.domain.service;
 
 import com.kairos.gridtest.domain.mapping.MapperService;
+import com.kairos.gridtest.domain.model.Price;
 import com.kairos.gridtest.domain.model.Product;
 import com.kairos.gridtest.domain.ports.input.GetProductPriceUseCase;
 import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
@@ -9,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class ProductDomainService implements ProductService {
@@ -33,13 +38,21 @@ public class ProductDomainService implements ProductService {
      */
     @Override
     public ProductPrice getProductPrice(long brandId, long productId, LocalDateTime date) {
-        var product = priceDAO.findProductByBrandAndProductIdAndDate(brandId, productId, date);
+        var priceList = priceDAO.findPriceByBrandAndProduct(brandId, productId);
 
-        if (product.isEmpty())
+        if (priceList.isEmpty())
             return null;
 
-        return buildProductPriceResponseFromProduct(product.get());
+        var product = new Product(brandId, productId);
+
+        priceList.stream()
+                .filter(price -> price.getStartDate().isBefore(date) && price.getEndDate().isAfter(date))
+                .forEach(price -> product.getPrices().add(price));
+
+        return buildProductPriceResponseFromProduct(product);
     }
+
+
 
     /**
      * Builds the response object from the product obtained from the repository

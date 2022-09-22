@@ -1,11 +1,9 @@
 package com.kairos.gridtest.domain.ports.output;
 
-import com.kairos.gridtest.domain.model.Product;
+import com.kairos.gridtest.domain.model.Price;
 
-import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.List;
 
 public interface PriceDAO {
-
-    Optional<Product> findProductByBrandAndProductIdAndDate(long brandId, long productId, LocalDateTime date);
+    List<Price> findPriceByBrandAndProduct(long brandId, long productId);
 }

@@ -1,6 +1,7 @@
 package com.kairos.gridtest.infrastructure.adapter.db.repository;
 
 import com.kairos.gridtest.domain.model.Amount;
+import com.kairos.gridtest.domain.model.Price;
 import com.kairos.gridtest.domain.model.Product;
 import com.kairos.gridtest.domain.ports.output.PriceDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class H2PriceDAOService implements PriceDAO {
@@ -20,19 +24,20 @@ public class H2PriceDAOService implements PriceDAO {
         this.priceRepository = priceRepository;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     @Override
-    public Optional<Product> findProductByBrandAndProductIdAndDate(long brandId, long productId, LocalDateTime date) {
+    public List<Price> findPriceByBrandAndProduct(long brandId, long productId) {
 
-        var product = new Product(brandId, productId);
+        return priceRepository.findByBrandIdAndProductId(brandId, productId)
+                .map(priceEntity -> new Price(brandId,
+                        productId,
+                        priceEntity.getPriceList(),
+                        priceEntity.getPriority(),
+                        new Amount(priceEntity.getPrice(),
+                                priceEntity.getCurrency()),
+                        priceEntity.getStartDate(),
+                        priceEntity.getEndDate()))
+                .collect(Collectors.toList());
 
-        priceRepository.findByBrandIdAndProductId(brandId, productId)
-                .filter(priceEntity -> priceEntity.getStartDate().isBefore(date)
-                        && priceEntity.getEndDate().isAfter(date))
-                .forEach(priceEntity -> {
-                    product.addProductPrice(priceEntity.getPriceList(), priceEntity.getPriority(), new Amount(priceEntity.getPrice(), priceEntity.getCurrency()), priceEntity.getStartDate(), priceEntity.getEndDate());
-                });
-
-        return product.getPrices().isEmpty() ? Optional.empty() : Optional.of(product);
     }
 }
