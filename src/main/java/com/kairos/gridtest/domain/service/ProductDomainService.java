@@ -1,18 +1,12 @@
 package com.kairos.gridtest.domain.service;
 
-import com.kairos.gridtest.domain.model.Price;
 import com.kairos.gridtest.domain.model.Product;
-import com.kairos.gridtest.domain.ports.input.GetProductPriceUseCase;
 import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
 import com.kairos.gridtest.domain.ports.output.PriceDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class ProductDomainService implements ProductService {

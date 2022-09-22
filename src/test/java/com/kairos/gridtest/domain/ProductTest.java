@@ -3,7 +3,6 @@ package com.kairos.gridtest.domain;
 import com.kairos.gridtest.domain.model.Amount;
 import com.kairos.gridtest.domain.model.Price;
 import com.kairos.gridtest.domain.model.Product;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
