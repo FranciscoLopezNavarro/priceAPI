@@ -2,7 +2,7 @@ package com.kairos.gridtest.application;
 
 import com.kairos.gridtest.domain.mapping.MapperService;
 import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
-import com.kairos.gridtest.domain.ports.output.ProductDAOService;
+import com.kairos.gridtest.domain.ports.output.PriceDAO;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import io.restassured.module.mockmvc.specification.MockMvcRequestSpecification;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +33,7 @@ class TechnicalTestApplicationTest {
     @Autowired
     private MapperService mapper;
     @Autowired
-    private ProductDAOService productRepository;
+    private PriceDAO productRepository;
 
     @BeforeEach
     public void setupUp() {

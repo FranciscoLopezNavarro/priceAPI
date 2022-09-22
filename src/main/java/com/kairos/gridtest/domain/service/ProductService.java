@@ -1,7 +1,10 @@
 package com.kairos.gridtest.domain.service;
 
-import com.kairos.gridtest.domain.ports.input.GetProductPriceUseCase;
+import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
 
-public interface ProductService extends GetProductPriceUseCase {
+import java.time.LocalDateTime;
+
+public interface ProductService  {
+    ProductPrice getProductPrice(long brandId, long productId, LocalDateTime date);
 
 }

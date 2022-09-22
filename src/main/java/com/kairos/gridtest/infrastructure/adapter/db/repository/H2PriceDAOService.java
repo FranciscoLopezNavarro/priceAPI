@@ -2,7 +2,7 @@ package com.kairos.gridtest.infrastructure.adapter.db.repository;
 
 import com.kairos.gridtest.domain.model.Amount;
 import com.kairos.gridtest.domain.model.Product;
-import com.kairos.gridtest.domain.ports.output.ProductDAOService;
+import com.kairos.gridtest.domain.ports.output.PriceDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,12 +11,12 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
-public class H2ProductDAOServiceImpl implements ProductDAOService {
+public class H2PriceDAOService implements PriceDAO {
 
     private final PriceRepository priceRepository;
 
     @Autowired
-    public H2ProductDAOServiceImpl(PriceRepository priceRepository) {
+    public H2PriceDAOService(PriceRepository priceRepository) {
         this.priceRepository = priceRepository;
     }
 

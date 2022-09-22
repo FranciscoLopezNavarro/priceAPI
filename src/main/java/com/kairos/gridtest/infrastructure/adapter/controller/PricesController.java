@@ -2,6 +2,7 @@ package com.kairos.gridtest.infrastructure.adapter.controller;
 
 import com.kairos.gridtest.domain.ports.input.GetProductPriceUseCase;
 import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
+import com.kairos.gridtest.domain.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +18,11 @@ import java.util.Optional;
 @RequestMapping("/prices")
 public class PricesController {
 
-    private final GetProductPriceUseCase productService;
+    private final GetProductPriceUseCase getProductPriceUseCase;
 
     @Autowired
-    public PricesController(GetProductPriceUseCase productService) {
-        this.productService = productService;
+    public PricesController(GetProductPriceUseCase getProductPriceUseCase) {
+        this.getProductPriceUseCase = getProductPriceUseCase;
     }
 
     @GetMapping(value = "/brand/{brandId}/product/{productId}/date/{date}")
@@ -30,7 +31,7 @@ public class PricesController {
                                                  @PathVariable
                                                  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) {
         return Optional
-                .ofNullable(productService.getProductPrice(brandId, productId, date))
+                .ofNullable(getProductPriceUseCase.getProductPrice(brandId, productId, date))
                 .map(productPrice -> ResponseEntity.ok().body(productPrice))
                 .orElseGet(() -> ResponseEntity.notFound().build());
 

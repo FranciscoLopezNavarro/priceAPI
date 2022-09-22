@@ -3,22 +3,22 @@ package com.kairos.gridtest.domain.service;
 import com.kairos.gridtest.domain.mapping.MapperService;
 import com.kairos.gridtest.domain.model.Product;
 import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
-import com.kairos.gridtest.domain.ports.output.ProductDAOService;
+import com.kairos.gridtest.domain.ports.output.PriceDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
 @Service
-public class ProductServiceImplUseCase implements ProductService {
+public class ProductServiceImpl implements ProductService {
 
-    private final ProductDAOService productRepository;
+    private final PriceDAO priceDAO;
 
     private final MapperService mapper;
 
     @Autowired
-    public ProductServiceImplUseCase(ProductDAOService productRepository, MapperService mapper) {
-        this.productRepository = productRepository;
+    public ProductServiceImpl(PriceDAO priceDAO, MapperService mapper) {
+        this.priceDAO = priceDAO;
         this.mapper = mapper;
     }
 
@@ -32,7 +32,7 @@ public class ProductServiceImplUseCase implements ProductService {
      */
     @Override
     public ProductPrice getProductPrice(long brandId, long productId, LocalDateTime date) {
-        var product = productRepository.findProductByBrandAndProductIdAndDate(brandId, productId, date);
+        var product = priceDAO.findProductByBrandAndProductIdAndDate(brandId, productId, date);
 
         if (product.isEmpty())
             return null;
