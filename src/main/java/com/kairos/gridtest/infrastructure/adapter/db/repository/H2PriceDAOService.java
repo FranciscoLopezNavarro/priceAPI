@@ -27,17 +27,19 @@ public class H2PriceDAOService implements PriceDAO {
     @Transactional
     @Override
     public List<Price> findPriceByBrandAndProduct(long brandId, long productId) {
-
         return priceRepository.findByBrandIdAndProductId(brandId, productId)
-                .map(priceEntity -> new Price(brandId,
-                        productId,
-                        priceEntity.getPriceList(),
-                        priceEntity.getPriority(),
-                        new Amount(priceEntity.getPrice(),
-                                priceEntity.getCurrency()),
-                        priceEntity.getStartDate(),
-                        priceEntity.getEndDate()))
+                .map(priceEntity -> Price.builder()
+                        .brandId(brandId)
+                        .productId(productId)
+                        .priceId(priceEntity.getPriceList())
+                        .priority(priceEntity.getPriority())
+                        .amount(Amount.builder()
+                                .currency(priceEntity.getCurrency())
+                                .value(priceEntity.getPrice())
+                                .build())
+                        .startDate(priceEntity.getStartDate())
+                        .endDate(priceEntity.getEndDate())
+                        .build())
                 .collect(Collectors.toList());
-
     }
 }

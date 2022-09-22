@@ -1,6 +1,5 @@
 package com.kairos.gridtest.domain.service;
 
-import com.kairos.gridtest.domain.mapping.MapperService;
 import com.kairos.gridtest.domain.model.Price;
 import com.kairos.gridtest.domain.model.Product;
 import com.kairos.gridtest.domain.ports.input.GetProductPriceUseCase;
@@ -20,12 +19,9 @@ public class ProductDomainService implements ProductService {
 
     private final PriceDAO priceDAO;
 
-    private final MapperService mapper;
-
     @Autowired
-    public ProductDomainService(PriceDAO priceDAO, MapperService mapper) {
+    public ProductDomainService(PriceDAO priceDAO) {
         this.priceDAO = priceDAO;
-        this.mapper = mapper;
     }
 
     /**
@@ -53,7 +49,6 @@ public class ProductDomainService implements ProductService {
     }
 
 
-
     /**
      * Builds the response object from the product obtained from the repository
      *
@@ -61,6 +56,13 @@ public class ProductDomainService implements ProductService {
      * @return The price of the product and its details.
      */
     private ProductPrice buildProductPriceResponseFromProduct(Product product) {
-        return mapper.getMapper().map(product.getPrice(), ProductPrice.class);
+        return ProductPrice.builder()
+                .brandId(product.getBrandId())
+                .productId(product.getProductId())
+                .priceList(product.getPrice().getPriceId())
+                .price(product.getPrice().getAmount())
+                .startDate(product.getPrice().getStartDate())
+                .endDate(product.getPrice().getEndDate())
+                .build();
     }
 }

@@ -1,6 +1,6 @@
 package com.kairos.gridtest.application;
 
-import com.kairos.gridtest.domain.mapping.MapperService;
+
 import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
 import com.kairos.gridtest.domain.ports.output.PriceDAO;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
@@ -30,8 +30,6 @@ class TechnicalTestApplicationTest {
     @Autowired
     private WebApplicationContext context;
 
-    @Autowired
-    private MapperService mapper;
     @Autowired
     private PriceDAO productRepository;
 
