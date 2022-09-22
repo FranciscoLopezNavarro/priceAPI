@@ -63,6 +63,23 @@ class TechnicalTestApplicationTest {
                 .statusCode(HttpStatus.NOT_FOUND.value());
     }
 
+
+    @Test
+    @DisplayName("givenBrandProductAndDate_whenPriceNotExistsForGivenDate_thenReturnNotFound")
+    void shouldReturnNotFoundWhenPriceDoesNotExistsForTheGivenDate() {
+        var brandId = 1L;
+        var productId = 35455L;
+        var date = LocalDateTime.now();
+
+        requestJson()
+                .when()
+                .get("/prices/brand/" + brandId + "/product/" + productId + "/date/" + date)
+                .then()
+                .log().all()
+                .statusCode(HttpStatus.NOT_FOUND.value());
+    }
+
+
     @Test
     @DisplayName("givenBrandProductAndDate_whenDate14/06/2020:10.00.00_thenReturnProduct")
     void shouldReturnProductForGivenDataTest1() {
