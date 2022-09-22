@@ -9,18 +9,17 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class GetProductPriceUseCaseImpl implements GetProductPriceUseCase {
+public class GetProductPriceService implements GetProductPriceUseCase {
 
-
-    private final ProductService productService;
+    private final ProductService productDomainService;
 
     @Autowired
-    public GetProductPriceUseCaseImpl(ProductService productService) {
-        this.productService = productService;
+    public GetProductPriceService(ProductService productDomainService) {
+        this.productDomainService = productDomainService;
     }
 
     @Override
     public ProductPrice getProductPrice(long brandId, long productId, LocalDateTime date) {
-        return productService.getProductPrice(brandId, productId, date);
+        return productDomainService.getProductPrice(brandId, productId, date);
     }
 }

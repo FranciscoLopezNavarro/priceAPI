@@ -2,6 +2,7 @@ package com.kairos.gridtest.domain.service;
 
 import com.kairos.gridtest.domain.mapping.MapperService;
 import com.kairos.gridtest.domain.model.Product;
+import com.kairos.gridtest.domain.ports.input.GetProductPriceUseCase;
 import com.kairos.gridtest.domain.ports.input.dto.ProductPrice;
 import com.kairos.gridtest.domain.ports.output.PriceDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +11,14 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductDomainService implements ProductService {
 
     private final PriceDAO priceDAO;
 
     private final MapperService mapper;
 
     @Autowired
-    public ProductServiceImpl(PriceDAO priceDAO, MapperService mapper) {
+    public ProductDomainService(PriceDAO priceDAO, MapperService mapper) {
         this.priceDAO = priceDAO;
         this.mapper = mapper;
     }
